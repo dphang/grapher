@@ -1,0 +1,28 @@
+<canvas id="canvas" width="800" height="800"></canvas>
+
+<script type="text/javascript" src="grapher.js"></script>
+<script type="text/javascript" src="jquery-1.4.2.js"></script>
+<script type="text/javascript" src="jquery.simple-color.js"></script>
+
+<script  type="text/javascript">
+$(document).ready(function(){
+	$('.simple_color_custom').simpleColor({
+			cellWidth: 50,
+			cellHeight: 50,
+            colors: ['FFFFFF', 'add8e6', 'f08080', 'fafad2', 'd3d3d3', '90ee90', '20b2aa', '87cefa', 'ffe4e1'],
+            columns: 9,
+			border: '1px solid #333333',
+			buttonClass: 'button',
+			displayColorCode: false
+	});
+});
+
+</script>
+<div>
+<br><br><br><br>
+<input class='simple_color_custom' value='#cc3333'/>    
+	
+    <input type='button' id='alert_button' value='Show Value'/>
+<textarea id="output"></textarea>
+<p class="center">Export as: <a href="javascript:saveAsPNG()">PNG</a> | <a href="javascript:saveAsLaTeX()">LaTeX</a></p>
+</div>
