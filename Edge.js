@@ -1,4 +1,4 @@
- /* Undirected Edge
+ /* Undirected and Direct Edges (and temporary counterparts)
  
  Copyright (c) 2013 Daniel Phang
  
