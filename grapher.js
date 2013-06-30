@@ -260,7 +260,7 @@ document.onkeydown = function(e)
         }
         else if (key == DELETE) // Delete the vertex or edge selected
         {
-            for (var i = 0; i < vertices.length; i++) // Delete vertex selected
+            for (var i = 0, n = vertices.length; i < n; i++) // Delete vertex selected
             {
                 if (vertices[i] == selectedObject) 
                 {
@@ -268,7 +268,7 @@ document.onkeydown = function(e)
                 }
             }
             
-            for (var i = 0; i < edges.length; i++) // Delete edge selected, or edges incident on deleted vertex
+            for (var i = 0, n = edges.length; i < n; i++) // Delete edge selected, or edges incident on deleted vertex
             {
                 if (edges[i] == selectedObject || edges[i].v1 == selectedObject || edges[i].v2 == selectedObject) 
                 {
@@ -335,7 +335,7 @@ document.onkeypress = function(e)
 // Attempt to select an object at the given (x, y) out of our added vertices and edges
 function selectObject(x, y)
 {
-    for (var i = 0; i < vertices.length; i++)
+    for (var i = 0, n = vertices.length; i < n; i++)
     {
         if (vertices[i].contains(x, y))
         {
@@ -343,7 +343,7 @@ function selectObject(x, y)
         }
     }
 
-    for (var i = 0; i < edges.length; i++)
+    for (var i = 0, n = edges.length; i < n; i++)
     {
         if (edges[i].contains(x, y))
         {
@@ -355,7 +355,7 @@ function selectObject(x, y)
 // Snap a vertex (for aligning with other vertices)
 function snap(vertex)
 {
-    for (var i = 0; i < vertices.length; i++)
+    for (var i = 0, n = vertices.length; i < n; i++)
     {
         if (Math.abs(vertex.x - vertices[i].x) < SNAP_MARGIN)
             vertex.x = vertices[i].x;
@@ -379,14 +379,14 @@ function drawWith(c)
     c.clearRect(0, 0, canvas.width, canvas.height);
     
     // Draw each vertex
-    for (var i = 0; i < vertices.length; i++)
+    for (var i = 0, n = vertices.length; i < n; i++)
     {
         c.fillStyle = c.strokeStyle = (vertices[i] == selectedObject) ? 'green' : 'black';
         vertices[i].draw(c);
     }
     
     // Draw each edge
-    for (var i = 0; i < edges.length; i++)
+    for (var i = 0, n = edges.length; i < n; i++)
     {
         c.fillStyle = c.strokeStyle = (edges[i] == selectedObject) ? 'green' : 'black';
         edges[i].draw(c);
@@ -448,7 +448,7 @@ function drawArrow(c, x, y, angle) {
 // This also means that an undirected edge must be deleted before directed edges can be added and vice versa
 function containsEdge(edge)
 {
-    for (var i = 0; i < edges.length; i++)
+    for (var i = 0, n = edges.length; i < n; i++)
     {
         if (edge.v1 == edges[i].v1 && edge.v2 == edges[i].v2 || edge.v2 == edges[i].v1 && edge.v1 == edges[i].v2)
         {
@@ -595,14 +595,16 @@ function LaTeXDrawer() {
     // For each point, output its LaTeX code
     this.stroke = function() 
     {
-        if (this._points.length == 0) 
+        var length = this._points.length;
+        
+        if (length == 0) 
         {
             return;
         }
         
         this._texData += '\\draw [' + this.strokeStyle + ']';
         
-        for (var i = 0; i < this._points.length; i++) 
+        for (var i = 0; i < length; i++) 
         {
             var p = this._points[i];
             this._texData += (i > 0 ? ' --' : '') + ' (' + fixed(p.x, 2) + ',' + fixed(-p.y, 2) + ')';
@@ -620,7 +622,7 @@ function LaTeXDrawer() {
         
         this._texData += '\\fill [' + this.strokeStyle + ']';
         
-        for (var i = 0; i < this._points.length; i++) 
+        for (var i = 0, n = this._points.length; i < n; i++) 
         {
             var p = this._points[i];
             this._texData += (i > 0 ? ' --' : '') + ' (' + fixed(p.x, 2) + ',' + fixed(-p.y, 2) + ')';
@@ -689,9 +691,10 @@ function LaTeXDrawer() {
         
         if (subscripts != null)
         {
-            var replace = new Array(subscripts.length);
+            var length = subscripts.length;
+            var replace = new Array(length);
             
-            for (var i = 0; i < subscripts.length; i++)
+            for (var i = 0; i < length; i++)
             {
                 replace[i] = '_{';
                 replace[i] += subscripts[i].replace(new RegExp('_', 'g'), '');
@@ -753,9 +756,10 @@ function makeSubscripts(text)
     
     if (subscripts != null)
     {
-        var replace = new Array(subscripts.length);
+        var length = subscripts.length;
+        var replace = new Array(length);
         
-        for (var i = 0; i < subscripts.length; i++)
+        for (var i = 0; i < length; i++)
         {
             replace[i] = subscripts[i].replace(new RegExp('_|_', 'g'), '');
             for (var j = 0; j < 10; j++)
