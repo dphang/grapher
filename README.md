@@ -9,4 +9,4 @@ To use Grapher, simply place ``index.html`` and ``grapher.js`` in the same direc
 
 ## License
 
-Grapher is released under the [MIT License](LICENSE.txt).
+Grapher is released under the [MIT License](LICENSE).
